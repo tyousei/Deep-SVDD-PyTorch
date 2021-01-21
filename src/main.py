@@ -14,14 +14,12 @@ from datasets.main import load_dataset
 # Settings
 ################################################################################
 @click.command()
-@click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10']))
-@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU']))
+@click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10']), default='mnist')
+@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU']), default='mnist_LeNet')
 @click.argument('xp_path', type=click.Path(exists=True))
 @click.argument('data_path', type=click.Path(exists=True))
-@click.option('--load_config', type=click.Path(exists=True), default=None,
-              help='Config JSON-file path (default: None).')
-@click.option('--load_model', type=click.Path(exists=True), default=None,
-              help='Model file path (default: None).')
+@click.option('--load_config', type=click.Path(exists=True), default=None, help='Config JSON-file path (default: None).')
+@click.option('--load_model', type=click.Path(exists=True), default=None, help='Model file path (default: None).')
 @click.option('--objective', type=click.Choice(['one-class', 'soft-boundary']), default='one-class',
               help='Specify Deep SVDD objective ("one-class" or "soft-boundary").')
 @click.option('--nu', type=float, default=0.1, help='Deep SVDD hyperparameter nu (must be 0 < nu <= 1).')
